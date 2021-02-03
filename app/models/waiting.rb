@@ -1,0 +1,2 @@
+class Waiting < ApplicationRecord
+end
