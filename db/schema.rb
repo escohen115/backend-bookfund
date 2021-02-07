@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_02_03_201541) do
     t.string "publishedDate"
     t.string "description"
     t.string "image_url"
+    t.string "api_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

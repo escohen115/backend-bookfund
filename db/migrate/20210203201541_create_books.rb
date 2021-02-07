@@ -8,6 +8,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.string :publishedDate
       t.string :description
       t.string :image_url
+      t.string :api_id
 
       t.timestamps
     end
