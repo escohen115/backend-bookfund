@@ -5,7 +5,7 @@ class WaitingsController < ApplicationController
         if waiting.valid?
             render json: waiting
         else
-            render json: {error: waiting.errors.full_messages}
+            render json: {error: "you've already joined the waitlist for this book"}
         end
     end
 
@@ -15,15 +15,27 @@ class WaitingsController < ApplicationController
     end
 
     def sponsor
-        number_of_sponsors = (sponsor_params[:sponsors]).to_i
+        number_of_sponsors = (sponsor_params[:num_books_funded]).to_i
         book_index = (params[:id]).to_i
-        waitings = Waiting.where(book_id: book_index)
+        sponsor_id = sponsor_params[:sponsor_id].to_i
+
+
+        waitings = Waiting.where(book_id: book_index, fulfilled: nil)
+    
         $i = 0
         while $i < number_of_sponsors
-            waitings[$i].destroy
+            waitings[$i].update(fulfilled: true, sponsor_id: sponsor_id)
             $i += 1
         end
+
+        render json: waitings
+            
     end
+
+    # def user_index
+    #     waitings = Waiting.where(user_id: params[:id])
+    #     render json: waitings
+    # end
 
     private
 
@@ -32,7 +44,7 @@ class WaitingsController < ApplicationController
     end
 
     def sponsor_params
-        params.permit(:sponsors)
+        params.permit(:num_books_funded, :sponsor_id, :fulfilled)
     end
     
 end

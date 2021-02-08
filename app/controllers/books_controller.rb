@@ -19,9 +19,7 @@ class BooksController < ApplicationController
     private
 
     def book_params
-        
         params.permit(:title, :subtitle, :authors, :publisher, :publishedDate, :description, :image_url, :api_id)
-        # byebug
     end
 
 

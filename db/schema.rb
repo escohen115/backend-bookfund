@@ -28,26 +28,11 @@ ActiveRecord::Schema.define(version: 2021_02_03_201541) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "receiveds", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "book_id"
-    t.boolean "reviewed"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
     t.string "text"
     t.integer "rating"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "sponsors", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -67,6 +52,9 @@ ActiveRecord::Schema.define(version: 2021_02_03_201541) do
   create_table "waitings", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
+    t.integer "sponsor_id"
+    t.boolean "fulfilled"
+    t.boolean "reviewed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

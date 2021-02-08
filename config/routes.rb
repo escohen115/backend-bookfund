@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   post '/users/login', to: 'users#login'
 
-  post '/waitings/sponsor/:id', to: 'waitings#sponsor'
+  patch '/waitings/sponsor/:id', to: 'waitings#sponsor'
+
+  # get 'waitings/user/:id', to: 'waitings#user_index'
   
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
