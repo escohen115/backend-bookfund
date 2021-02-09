@@ -1,3 +1,7 @@
+require 'nokogiri'
+require 'httparty'
+
+
 class BooksController < ApplicationController
 
     def create 
@@ -14,6 +18,18 @@ class BooksController < ApplicationController
     def index
         books = Book.all
         render json: books
+    end
+
+    def scrape
+       
+        url = "https://booksrun.com/search/#{params[:id]}?"
+        unparsed_page = HTTParty.get(url)
+        parsed_page = Nokogiri::HTML(unparsed_page)
+        price = parsed_page.xpath('/html/body/main/div/section/div[1]/div/div[2]/div/a')
+        price_parsed = price.text[47..51]
+        render json: price_parsed
+        byebug
+
     end
 
     private

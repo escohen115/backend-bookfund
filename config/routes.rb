@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   # get 'waitings/user/:id', to: 'waitings#user_index'
   
-  
+  get '/books/scrape/:id', to: 'books#scrape'
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
