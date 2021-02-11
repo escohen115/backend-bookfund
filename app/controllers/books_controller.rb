@@ -25,11 +25,17 @@ class BooksController < ApplicationController
         url = "https://booksrun.com/search/#{params[:id]}?"
         unparsed_page = HTTParty.get(url)
         parsed_page = Nokogiri::HTML(unparsed_page)
-        price = parsed_page.xpath('/html/body/main/div/section/div[1]/div/div[2]/div/a')
-        price_parsed = price.text[47..51]
-        render json: price_parsed
-        byebug
 
+        # price = parsed_page.xpath('/html/body/main/div/section/div[1]/div/div[1]/div[2]/div/div[2]/h3/a')
+        price = parsed_page.xpath('/html/body')
+
+        endpoint = price.at('a')['href']
+        base_url = "https://booksrun.com"        
+        to_be_returned = base_url + endpoint
+
+
+        render json: to_be_returned
+        
     end
 
     private

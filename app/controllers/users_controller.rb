@@ -19,11 +19,20 @@ class UsersController < ApplicationController
         render json: user
     end
 
+    def index
+        users = User.all
+        render json: users
+    end
+
+    def update
+        user = User.find_by(id: params[:id])
+        user.update(user_params)
+    end
 
     private
 
     def user_params
-        params.permit(:username)
+        params.permit(:username, :eligible)
     end
 
 end

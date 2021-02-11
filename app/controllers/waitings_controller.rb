@@ -19,12 +19,15 @@ class WaitingsController < ApplicationController
         book_index = (params[:id]).to_i
         sponsor_id = sponsor_params[:sponsor_id].to_i
 
-
         waitings = Waiting.where(book_id: book_index, fulfilled: nil)
-    
         $i = 0
+
+        t = Time.now
+        time = t.to_f * 1000
+
+
         while $i < number_of_sponsors
-            waitings[$i].update(fulfilled: true, sponsor_id: sponsor_id)
+            waitings[$i].update(fulfilled: true, sponsor_id: sponsor_id, sponsor_date: time)
             $i += 1
         end
 
