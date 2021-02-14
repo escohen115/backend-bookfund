@@ -25,7 +25,6 @@ class WaitingsController < ApplicationController
         t = Time.now
         time = t.to_f * 1000
 
-
         while $i < number_of_sponsors
             waitings[$i].update(fulfilled: true, sponsor_id: sponsor_id, sponsor_date: time)
             $i += 1
