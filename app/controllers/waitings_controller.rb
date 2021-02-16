@@ -16,6 +16,7 @@ class WaitingsController < ApplicationController
 
     def sponsor
         number_of_sponsors = (sponsor_params[:num_books_funded]).to_i
+
         book_index = (params[:id]).to_i
         sponsor_id = sponsor_params[:sponsor_id].to_i
 
@@ -26,8 +27,13 @@ class WaitingsController < ApplicationController
         time = t.to_f * 1000
 
         while $i < number_of_sponsors
-            waitings[$i].update(fulfilled: true, sponsor_id: sponsor_id, sponsor_date: time)
-            $i += 1
+            if User.find_by(username: (waitings[$i].user.username)).eligible
+                waitings[$i].update(fulfilled: true, sponsor_id: sponsor_id, sponsor_date: time)
+                $i += 1
+            else
+                $i += 1
+                number_of_sponsors+=1
+            end
         end
 
         render json: waitings

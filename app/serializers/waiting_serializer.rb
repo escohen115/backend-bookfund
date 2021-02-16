@@ -3,4 +3,5 @@ class WaitingSerializer < ActiveModel::Serializer
 
   belongs_to :user
 
+ 
 end
