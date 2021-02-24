@@ -27,9 +27,14 @@ class WaitingsController < ApplicationController
         time = t.to_f * 1000
 
         while $i < number_of_sponsors
-            if User.find_by(username: (waitings[$i].user.username)).eligible
-                waitings[$i].update(fulfilled: true, sponsor_id: sponsor_id, sponsor_date: time)
-                $i += 1
+            
+            if User.find_by(username: (waitings[$i].user.username)).eligible == true
+                user = User.find_by(username: (waitings[$i].user.username))
+                if user.id != sponsor_id
+                    User.find_by(username: (waitings[$i].user.username)).update(eligible: false)
+                    waitings[$i].update(fulfilled: true, sponsor_id: sponsor_id, sponsor_date: time)
+                    $i += 1
+                end
             else
                 $i += 1
                 number_of_sponsors+=1
