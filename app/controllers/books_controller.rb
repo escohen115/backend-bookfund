@@ -6,12 +6,11 @@ class BooksController < ApplicationController
 
     def create 
         book = Book.create(book_params)
-    
         if book.valid?
-            render json:  book
+            render json: book
         else
             book = Book.find_by(api_id: book_params[:api_id])
-            render json:  book
+            render json: book
         end
     end
     
@@ -20,13 +19,17 @@ class BooksController < ApplicationController
         render json: books
     end
 
+    def show
+        book = book.find_by(id: params[:id])
+        render json: book
+    end
+
+
     def scrape
        
         url = "https://booksrun.com/search/#{params[:id]}?"
         unparsed_page = HTTParty.get(url)
         parsed_page = Nokogiri::HTML(unparsed_page)
-
-        # price = parsed_page.xpath('/html/body/main/div/section/div[1]/div/div[1]/div[2]/div/div[2]/h3/a')
         price = parsed_page.xpath('/html/body')
 
         endpoint = price.at('a')['href']
