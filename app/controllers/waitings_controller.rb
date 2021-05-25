@@ -15,6 +15,7 @@ class WaitingsController < ApplicationController
     end
 
     def sponsor
+        
         number_of_sponsors = (sponsor_params[:num_books_funded]).to_i
 
         book_index = (params[:id]).to_i
@@ -31,7 +32,8 @@ class WaitingsController < ApplicationController
             if User.find_by(username: (waitings[$i].user.username)).eligible == true
                 user = User.find_by(username: (waitings[$i].user.username))
                 if user.id != sponsor_id
-                    User.find_by(username: (waitings[$i].user.username)).update(eligible: false)
+                    user.update(eligible: false)
+                    byebug
                     waitings[$i].update(fulfilled: true, sponsor_id: sponsor_id, sponsor_date: time)
                     $i += 1
                 end
