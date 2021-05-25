@@ -3,5 +3,10 @@ class WaitingSerializer < ActiveModel::Serializer
 
   belongs_to :user
 
+  def user
+    {id: self.object.user.id, 
+     username: self.object.user.username}
+  end 
+
  
 end

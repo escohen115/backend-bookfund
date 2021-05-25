@@ -6,6 +6,13 @@ GIT
     faker (2.16.0)
       i18n (>= 1.6, < 2)
 
+GIT
+  remote: https://github.com/mimemagicrb/mimemagic.git
+  revision: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
+  ref: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
+  specs:
+    mimemagic (0.3.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -119,7 +126,6 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.0225)
-    mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
     minitest (5.14.4)
@@ -224,6 +230,8 @@ GEM
       unf_ext
     unf (0.1.4-java)
     unf_ext (0.0.7.7)
+    unf_ext (0.0.7.7-x64-mingw32)
+    unf_ext (0.0.7.7-x86-mingw32)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-driver (0.7.3-java)
@@ -248,6 +256,7 @@ DEPENDENCIES
   faker!
   httparty
   listen (~> 3.3)
+  mimemagic!
   nokogiri
   pg (~> 1.1)
   puma (~> 5.0)
@@ -257,7 +266,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.6.1p33
+   ruby 2.6.3p62
 
 BUNDLED WITH
-   2.2.2
+   2.2.18

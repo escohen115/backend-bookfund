@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     end
 
     def show
-        book = book.find_by(id: params[:id])
+        book = Book.find_by(id: params[:id])
         render json: book
     end
 
